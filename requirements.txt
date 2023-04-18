@@ -6,6 +6,7 @@ dnspython==2.3.0
 Flask==2.2.3
 Flask-SQLAlchemy==3.0.3
 greenlet==2.0.2
+guinicorn==20.1.0
 h11==0.14.0
 h2==4.1.0
 hpack==4.0.0
