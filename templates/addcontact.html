@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add contact</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+        <a href="https://t.me/lorsothya" class="btn btn-secondary gy-5">Add me to your contacts</a>
+        <a href="/verify?chatid={{chatid}}" class="btn btn-primary gy-5">Next</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Form</title>
+{% endblock %}
+
+{% block body %}
+{% if chatid %}
+    <div class="container">
+        <form class="row=" action="/form" method="POST">
+            <legend style="text-align: center;">Complete your information</legend>
+            <input type="hidden" name="chatid" value="{{ chatid }}" class="form-control">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" value = "{{ name }}" class="form-control" required pattern="^[a-zA-Z\-]+$">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone number</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">+</span>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="85590262305" required pattern="^[0-9]+$">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="example@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% else %}
+    <p>Chat ID not provided.</p>
+{% endif %}
+{% endblock %}

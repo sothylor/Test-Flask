@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>verifying</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-7">Thank you for adding me to your contacts!</h1>
+        <h1 class="display-6">Please click the button below to continue.</h1><br>
+        <a href="{{ url_for('form', chatid=chatid, name=name) }}" class="btn btn-primary">Continue to the form</a>
+    </div>
+{% endblock %}
