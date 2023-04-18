@@ -67,7 +67,7 @@ async def form():
 async def main():
     await client.start()
     config = Config()
-    config.bind = ["127.0.0.1:5000"]
+    config.bind = ["0.0.0.0:5000"]
     await serve(app, config)
 
 if __name__ == '__main__':
