@@ -70,10 +70,9 @@ async def form():
 async def main():
     await client.start()
     config = Config()
-    config.bind = ["0.0.0.0:8080"]
     await serve(app, config)
 
 app = asyncio.get_event_loop().run_until_complete(main())
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run()
