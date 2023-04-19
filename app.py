@@ -69,17 +69,21 @@ async def form():
 async def main():
     try:
         await client.start()
-    except errors.FloodWait() as e:
-        wait_time = e.value
+    except errors.FloodWait as e:
+        wait_time = e.seconds
         print(f"Flood wait error: waiting for {wait_time} seconds before retrying.")
         await asyncio.sleep(wait_time)
         await main()
     except Exception as e:
-        return (f'Error {e}')
+        print(f"Error in Telegram client: {e}")
+        return
+
     try:
         await app.run_task(host='localhost', port=5000)
     except Exception as e:
-        return (f'Error {e}')
+        print(f"Error in Quart app: {e}")
+        return
+
 
 app = asyncio.run(main())
 
