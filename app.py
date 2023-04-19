@@ -79,11 +79,8 @@ async def main():
         print(f"Error in Telegram client: {e}")
         return
 
-    port = int(os.environ.get('PORT', 5000))
-    host = '0.0.0.0'
-
     try:
-        await hypercorn.asyncio.serve(app, hypercorn.Config.from_dict({'host': host, 'port': port}))
+        await hypercorn.asyncio.serve(app, hypercorn.config.Config())
     except Exception as e:
         print(f"Error in Quart app: {e}")
         return
