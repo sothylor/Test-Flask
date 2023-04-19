@@ -1,6 +1,5 @@
 import asyncio
-from hypercorn.asyncio import serve
-from hypercorn.config import Config
+import hypercorn
 from quart import Quart, request, render_template, redirect, url_for
 from pyrogram import Client
 from pyrogram.types import User
@@ -69,11 +68,9 @@ async def form():
 
 async def main():
     await client.start()
-    config = Config()
-    await serve(app, config)
-    
+    await app.run()
+
 app = asyncio.run(main())
 
 if __name__ == '__main__':
     app
-
