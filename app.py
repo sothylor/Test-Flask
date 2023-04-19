@@ -1,11 +1,12 @@
 import asyncio
 from hypercorn.asyncio import serve
 from hypercorn.config import Config
-from quart import Quart, request, render_template, redirect
+from quart import Quart, request, render_template, redirect, url_for
 from pyrogram import Client
 from pyrogram.types import User
 import myapi
 import database
+
 
 api_id = myapi.telegram_app_id
 api_hash = myapi.telegram_app_api_hash
@@ -34,7 +35,8 @@ async def verify():
         await client.add_contact(chatid, "usernameanonymous")
         member = await client.get_users(chatid)
         if isinstance(member, User) and member.is_mutual_contact:
-            member_data = member, name = ""
+            member_data = member
+            name = ""
             if(member_data.username):
                 name = member_data.username
             elif(member_data.first_name):
@@ -55,20 +57,23 @@ async def form():
         chatid = request.args.get('chatid')
         name = request.args.get('name')
         return await render_template('form.html', chatid=chatid, name=name)
-    elif request.method == 'POST':
+    else:
         form = await request.form
         chatid = form.get('chatid')
         username = form.get('username')
         phone = "+" + form.get('phone')
         email = form.get('email')
+        print('yes')
         database.add_user(chatid, username, phone, email)
-        return render_template('thanks.html')
+        return await render_template('thanks.html')
 
 async def main():
     await client.start()
     config = Config()
-    config.bind = ["0.0.0.0:5000"]
+    config.bind = ["127.0.0.1:5000"]
     await serve(app, config)
 
+app = asyncio.get_event_loop().run_until_complete(main())
+
 if __name__ == '__main__':
-    asyncio.run(main())
+    app
