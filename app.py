@@ -5,6 +5,7 @@ from pyrogram import Client, errors
 from pyrogram.types import User
 import myapi
 import database
+import os
 
 
 api_id = myapi.telegram_app_id
