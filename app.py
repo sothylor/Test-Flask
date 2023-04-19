@@ -1,7 +1,7 @@
 import asyncio
 import hypercorn
 from quart import Quart, request, render_template, redirect, url_for
-from pyrogram import Client
+from pyrogram import Client, errors
 from pyrogram.types import User
 import myapi
 import database
@@ -67,8 +67,19 @@ async def form():
         return await render_template('thanks.html')
 
 async def main():
-    await client.start()
-    await app.run()
+    try:
+        await client.start()
+    except errors.FloodWait() as e:
+        wait_time = e.value
+        print(f"Flood wait error: waiting for {wait_time} seconds before retrying.")
+        await asyncio.sleep(wait_time)
+        await main()
+    except Exception as e:
+        return (f'Error {e}')
+    try:
+        await app.run_task(host='localhost', port=5000)
+    except Exception as e:
+        return (f'Error {e}')
 
 app = asyncio.run(main())
 
