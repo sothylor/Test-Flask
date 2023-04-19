@@ -70,7 +70,7 @@ async def main():
     try:
         await client.start()
     except errors.FloodWait as e:
-        wait_time = e.seconds
+        wait_time = e.value
         print(f"Flood wait error: waiting for {wait_time} seconds before retrying.")
         await asyncio.sleep(wait_time)
         await main()
