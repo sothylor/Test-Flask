@@ -9,8 +9,8 @@ consumer_secret = ''
 twitter_access_token = ''
 twitter_access_token_secret = ''
 telegram_channel_id = '+WxTkKT6OiVUyMTY1'
-telegram_app_id = '22603710'
-telegram_app_api_hash = 'f8a21bc37f3cfc594e350e7072a4ac56'
+telegram_app_id = '26844066'#'22603710'
+telegram_app_api_hash = 'c12fb22219be944bf3bcfe9b04359b15' #'f8a21bc37f3cfc594e350e7072a4ac56'
 class TwilioCredentials:
     account_sid = "ACc6b947a7035e567af23ad1215204e89f"
     auth_token = "51f7c0305b1b5ab151b5889c22a23b52"
