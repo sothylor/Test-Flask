@@ -5,7 +5,6 @@ from pyrogram import Client, errors
 from pyrogram.types import User
 import myapi
 import database
-import os
 
 
 api_id = myapi.telegram_app_id
@@ -68,23 +67,8 @@ async def form():
         return await render_template('thanks.html')
 
 async def main():
-    try:
-        await client.start()
-    except errors.FloodWait as e:
-        wait_time = e.value
-        print(f"Flood wait error: waiting for {wait_time} seconds before retrying.")
-        await asyncio.sleep(wait_time)
-        await main()
-    except Exception as e:
-        print(f"Error in Telegram client: {e}")
-        return
-
-    try:
-        await hypercorn.asyncio.serve(app, hypercorn.config.Config())
-    except Exception as e:
-        print(f"Error in Quart app: {e}")
-        return
-
+    await client.start()
+    await app.run_task(host='0.0.0.0', port=5000)
 
 app = asyncio.run(main())
 
