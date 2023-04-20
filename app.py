@@ -11,11 +11,11 @@ api_id = myapi.telegram_app_id
 api_hash = myapi.telegram_app_api_hash
 
 app = Quart(__name__)
-client = Client('my_bot', api_id, api_hash, bot_token=myapi.Token)
+client = Client('my_bot', api_id, api_hash, phone_number="+85590262305")
 
 @app.route('/')
 async def home():
-    chatid = 'omsovannrith'
+    chatid = request.args.get('chatid')
     user = await client.get_users(chatid)
     chatid = user.id
     if database.find_one(chatid):
