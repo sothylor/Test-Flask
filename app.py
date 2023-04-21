@@ -16,8 +16,12 @@ client = Client('my_bot', api_id, api_hash, phone_number="+85569218098")
 @app.route('/')
 async def home():
     chatid = request.args.get('chatid')
-    user = await client.get_users(chatid)
+    try:
+        user = await client.get_users(chatid)
+    except:
+        return 'Invalid User'
     chatid = user.id
+    await client.send_message(chatid, "Please add me to contact")
     if database.find_one(chatid):
         return render_template('thanks.html')
     return redirect(f'/addcontact?chatid={chatid}')
