@@ -7,12 +7,12 @@
 {% block body %}
 {% if chatid %}
     <div class="container">
-        <form class="row=" action="/form" method="POST">
+        <form class="row=" action="{{url_for('form')}}" method="POST">
             <legend style="text-align: center;">Complete your information</legend>
             <input type="hidden" name="chatid" value="{{ chatid }}" class="form-control">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" name="username" value = "{{ name }}" class="form-control" required pattern="^[a-zA-Z\-]+$">
+                <input type="text" id="username" name="username" value = "{{ name }}" class="form-control" required pattern="^[a-zA-Z\-_]+$">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone number</label>

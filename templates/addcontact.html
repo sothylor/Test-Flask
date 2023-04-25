@@ -7,8 +7,8 @@
 {% block body %}
 <div class="container">
     <div class="btn-group-vertical" role="group" aria-label="Basic example">
-        <a href="https://t.me/Safialor" class="btn btn-secondary gy-5">Add me to your contacts</a>
-        <a href="/verify?chatid={{chatid}}" class="btn btn-primary gy-5">Next</a>
+        <a href="{{url_for('invite', chatid=chatid)}}" class="btn btn-secondary gy-5 btn-lg" target="_blank">Add me to your contacts to proccess</a>
+        <a href="{{url_for('verify', chatid=chatid)}}" class="btn btn-primary gy-5 btn-lg">Proceed</a>
     </div>
 </div>
 {% endblock %}

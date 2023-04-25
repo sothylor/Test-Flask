@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Join channel</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+        <a href="https://t.me/+zgn2tXV5TXU5NGI9" class="btn btn-secondary gy-5 btn-lg" target="_blank">Join my channel to procceed</a>
+        <a href="{{url_for('channelverify', chatid=chatid, groupid=groupid)}}" class="btn btn-primary gy-5 btn-lg">Proceed</a>
+    </div>
+</div>
+{% endblock %}

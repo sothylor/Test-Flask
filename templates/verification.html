@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Verify Form</title>
+{% endblock %}
+
+{% block body %}
+{% if status == 'both_error' %}
+<h1 class="display-6">Wrong email code and phone code</h1><br>
+{% elif status == 'phone_error' %}
+<h1 class="display-6">Wrong phone code</h1><br>
+{% elif status == 'email_error' %}
+<h1 class="display-6">Wrong email code</h1><br>
+{% endif %}
+    <div class="container">
+        <form class="row" id="verification-form" action="{{url_for('verify_phone_email')}}" method="POST">
+            <legend style="text-align: center;">Enter your verification code</legend>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone-number verification code</label>
+              <div class="input-group mb-3">
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="0000" required>
+              <a href="{{ url_for('verify_phone_email', resend='phone') }}" class="btn btn-outline-secondary">Resend</a>
+              </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email-address verification code</label>
+              <div class="input-group mb-3">
+                <input type="text" id="email" name="email" class="form-control" placeholder="0000" required>
+                <a href="{{ url_for('verify_phone_email', resend='email') }}" class="btn btn-outline-secondary">Resend</a>
+              </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" id="submit" class="btn btn-primary">Check</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
