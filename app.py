@@ -48,9 +48,13 @@ async def home():
 
 @app.route('/addcontact')
 async def addcontact():
-  chatid = request.args.get('chatid')
+  chat = request.args.get('chatid')
   try:
-    user = await client.get_users(int(chatid))
+    chatid = int(chat)
+  except:
+    chatid = chat
+  try:
+    user = await client.get_users(chatid)
   except:
     return 'Invalid User'
   chatid = user.id
